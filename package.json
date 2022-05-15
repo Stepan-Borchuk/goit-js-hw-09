@@ -10,13 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stepan-borchuk.github.io/goit-js-hw-09.git"
+    "url": "git+https://github.com/Stepan-Borchuk/goit-js-hw-09.git"
   },
   "keywords": [],
   "author": "Stepan Borchuk <sb-if@hotmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stepan-borchuk.github.io/goit-js-hw-09/issues"
+    "url": "https://github.com/Stepan-Borchuk/goit-js-hw-09/issues"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
