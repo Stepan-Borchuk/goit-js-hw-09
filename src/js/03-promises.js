@@ -1,3 +1,11 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+Notify.init({
+  width: '280px',
+  position: 'center-center', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' - 'center-top' - 'center-bottom' - 'center-center'
+  timeout: 10000,
+})
+
 const refs = {
   delay: document.querySelector('input[name=delay]'),
   step: document.querySelector('input[name=step]'),
@@ -41,11 +49,13 @@ refs.submitBtn.addEventListener('click', (e) => {
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
   if (shouldResolve) {
-    console.log('✅ Fulfille');
+    // console.log('✅ Fulfille');
+    Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
 
     return { position, delay }
   } else {
-    console.log('❌ Rejected');
+    // console.log('❌ Rejected');
+    Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     return { position, delay }
   }
 }
