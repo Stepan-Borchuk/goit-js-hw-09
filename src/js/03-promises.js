@@ -7,9 +7,9 @@ const refs = {
 
 refs.submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  const firstDelay = refs.delay.value * 1000;
+  const firstDelay = refs.delay.value;
   const amount = refs.amount.value;
-  const delayStep = refs.step.value * 1000;
+  const delayStep = refs.step.value;
   refs.submitBtn.disabled = true;
   let position = 0;
   // createDelay
@@ -29,7 +29,7 @@ refs.submitBtn.addEventListener('click', (e) => {
     // console.log(delay += delayStep);
     position += 1
     delay += delayStep;
-    console.log(delay);
+    // console.log(delay);
 
     createPromise()
 
