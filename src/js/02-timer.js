@@ -21,25 +21,24 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-        // deadLine = new Date(`${selectedDates}`);
-        // console.log(deadLine);
-        console.log(selectedDates[0]);
-        // return selectedDates[0];
+
     },
 };
 
 const fp = flatpickr(refs.input, options);
-  
-refs.startBtn.addEventListener('click', () => setInterval(timer, 1000));
+let timerId;
 
-refs.input.addEventListener('input', () => {
+refs.startBtn.addEventListener('click', () => {
+    timerId = setInterval(timer, 1000);
+    refs.startBtn.disabled = true
+});
+
+refs.startBtn.addEventListener('mouseover', () => {
+    veryfyDate()
+});
     
-    if (new Date(fp.selectedDates) <= Date.now()) {
-        Notify.warning('Please choose a date in the futur');
-        refs.startBtn.disabled = true
-    } else {
-      refs.startBtn.disabled = false  
-    }
+refs.input.addEventListener('input', () => {
+    veryfyDate()
 })
 
 function convertMs(ms) {
@@ -62,20 +61,46 @@ function convertMs(ms) {
     refs.hours.textContent = hours;
     refs.minutes.textContent = minutes;
     refs.seconds.textContent = seconds;
-//   return { days, hours, minutes, seconds };
+
     
     function addLeadingZero(value) {
     return String(value).padStart(2, '0');
-}
+    
+    }
+    
+    console.log ((ms - 1000) <= 0)
+
+    if ((ms - 1000) <= 0) {
+        clearInterval(timerId);
+        refs.startBtn.disabled = false
+    }
 
 }
+
+
 
 function timer() {
     const today = Date.now();
     const deadLine = new Date(fp.selectedDates);
-    const ms = deadLine - today;
-    convertMs(ms);  
+   const ms = deadLine - today;
+    convertMs(ms); 
 };
+
+function veryfyDate() {
+         if (new Date(fp.selectedDates) <= Date.now()) {
+        Notify.warning('Please choose a date in the futur');
+        refs.startBtn.disabled = true;
+    
+
+    } else {
+      refs.startBtn.disabled = false  
+    }
+   
+}
+
+
+
+ 
 
 
 
