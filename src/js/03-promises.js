@@ -15,7 +15,7 @@ const refs = {
 } 
 
 refs.submitBtn.addEventListener('mouseover', () => {
-  if (refs.delay.value <= 0 || refs.amount.value <= 0 || refs.step.value <= 0) {
+  if (refs.delay.value <= 0 || refs.amount.value <= 0 || refs.step.value < 0) {
     Notify.failure("Enter positive Values");
     refs.submitBtn.disabled = true;
     setTimeout(()=>{refs.submitBtn.disabled = false}, 1000)
